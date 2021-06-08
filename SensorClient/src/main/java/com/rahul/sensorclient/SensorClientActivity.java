@@ -3,7 +3,6 @@ package com.rahul.sensorclient;
 import android.os.Bundle;
 import android.widget.TextView;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -42,13 +41,26 @@ public class SensorClientActivity extends AppCompatActivity {
                 });
             }
         });
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        instance.unbindService(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         instance.registerSensor(this);
     }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        instance.unbindService(this);
+
     }
 
 }

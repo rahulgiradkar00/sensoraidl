@@ -41,6 +41,11 @@ public class SensorService extends Service implements SensorEventListener {
                 cb = _cb;
                 Log.d(TAG, "IRemoteServiceCallback");
             }
+
+            @Override
+            public void unRegisterCallback(IRemoteServiceCallback _cb) throws RemoteException {
+                cb = null;
+            }
         };
     }
 
@@ -52,7 +57,6 @@ public class SensorService extends Service implements SensorEventListener {
             case Sensor.TYPE_ROTATION_VECTOR:
                 /* Log.e(TAG, "event.toString()");*/
                 if (cb != null) {
-                    Log.e(TAG, "callback attached");
                     try {
                         cb.valueChanged(event.values);
                     } catch (RemoteException e) {

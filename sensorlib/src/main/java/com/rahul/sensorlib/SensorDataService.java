@@ -31,7 +31,7 @@ public class SensorDataService {
     IRemoteServiceCallback mCallback = new IRemoteServiceCallback.Stub() {
         @Override
         public void valueChanged(float[] value) throws RemoteException {
-            Log.e(TAG, String.valueOf("valueChangedvalueChanged"));
+            Log.e(TAG, "valueChangedvalueChanged");
             Log.e(TAG, value + "");
             if (iSensorDataCallback != null) {
                 iSensorDataCallback.onValueUpdate(value);
@@ -39,7 +39,7 @@ public class SensorDataService {
         }
     };
 
-   public void registerSensor(Activity activity) {
+    public void registerSensor(Activity activity) {
         sensorConnection = new SensorConnection();
         Intent intent = new Intent("com.rahul.sensorserver.ISensorService");
         intent.setPackage("com.rahul.sensorserver");
@@ -48,6 +48,13 @@ public class SensorDataService {
     }
 
     public void unbindService(Activity activity) {
+        if (sensorService != null && mCallback != null) {
+            try {
+                sensorService.unRegisterCallback(mCallback);
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        }
         activity.unbindService(sensorConnection);
     }
 
