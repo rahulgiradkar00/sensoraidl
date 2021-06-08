@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rahul.com.rahul.sensorserver">
+    package="com.rahul.sensorserver">
 
     <application
         android:allowBackup="true"
@@ -22,7 +22,7 @@
         </activity>-->
         <service android:name=".SensorService">
             <intent-filter>
-                <action android:name="com.rahul.com.rahul.sensorserver.ISensorService" />
+                <action android:name="com.rahul.sensorserver.ISensorService" />
             </intent-filter>
         </service>
     </application>

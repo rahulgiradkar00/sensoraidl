@@ -41,8 +41,8 @@ public class SensorDataService {
 
    public void registerSensor(Activity activity) {
         sensorConnection = new SensorConnection();
-        Intent intent = new Intent("com.rahul.com.rahul.sensorserver.ISensorService");
-        intent.setPackage("com.rahul.com.rahul.sensorserver");
+        Intent intent = new Intent("com.rahul.sensorserver.ISensorService");
+        intent.setPackage("com.rahul.sensorserver");
         intent.putExtra("version", "1.0");
         activity.bindService(intent, sensorConnection, Context.BIND_AUTO_CREATE);
     }

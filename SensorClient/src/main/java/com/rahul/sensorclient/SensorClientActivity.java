@@ -28,7 +28,7 @@ public class SensorClientActivity extends AppCompatActivity {
         txtSensorValue = (TextView) findViewById(R.id.txtSensorValue);
 
         this.instance = SensorDataService.getInstance();
-        instance.registerSensor(this);
+
         instance.setListener(new ISensorDataCallback() {
             @Override
             public void onValueUpdate(float[] values) {
@@ -42,6 +42,7 @@ public class SensorClientActivity extends AppCompatActivity {
                 });
             }
         });
+        instance.registerSensor(this);
     }
 
     @Override
